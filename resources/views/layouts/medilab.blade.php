@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('medilab') }}/assets/img/favicon.png" rel="icon">
-    <link href="{{ asset('medilab') }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/medilab/assets/img/favicon.png" rel="icon">
+    <link href="/medilab/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -19,17 +19,17 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('medilab') }}/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="{{ asset('medilab') }}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/medilab/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('medilab') }}/assets/css/style.css" rel="stylesheet">
+    <link href="/medilab/assets/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: Medilab
@@ -64,7 +64,7 @@
 
             <h1 class="logo me-auto"><a href="index.html">Medilab</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="{{ asset('medilab') }}/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <!-- <a href="index.html" class="logo me-auto"><img src="/medilab/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
@@ -383,7 +383,7 @@
                                             quaerat quos qui similique accusamus nostrum rem vero</p>
                                     </div>
                                     <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('medilab') }}/assets/img/departments-1.jpg" alt=""
+                                        <img src="/medilab/assets/img/departments-1.jpg" alt=""
                                             class="img-fluid">
                                     </div>
                                 </div>
@@ -400,7 +400,7 @@
                                             madirna desera vafle de nideran pal</p>
                                     </div>
                                     <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('medilab') }}/assets/img/departments-2.jpg" alt=""
+                                        <img src="/medilab/assets/img/departments-2.jpg" alt=""
                                             class="img-fluid">
                                     </div>
                                 </div>
@@ -418,7 +418,7 @@
                                             Soluta et harum voluptatem optio quae</p>
                                     </div>
                                     <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('medilab') }}/assets/img/departments-3.jpg" alt=""
+                                        <img src="/medilab/assets/img/departments-3.jpg" alt=""
                                             class="img-fluid">
                                     </div>
                                 </div>
@@ -435,7 +435,7 @@
                                             quia a laborum inventore</p>
                                     </div>
                                     <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('medilab') }}/assets/img/departments-4.jpg" alt=""
+                                        <img src="/medilab/assets/img/departments-4.jpg" alt=""
                                             class="img-fluid">
                                     </div>
                                 </div>
@@ -451,7 +451,7 @@
                                             quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
                                     </div>
                                     <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('medilab') }}/assets/img/departments-5.jpg" alt=""
+                                        <img src="/medilab/assets/img/departments-5.jpg" alt=""
                                             class="img-fluid">
                                     </div>
                                 </div>
@@ -478,7 +478,7 @@
 
                     <div class="col-lg-6">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ asset('medilab') }}/assets/img/doctors/doctors-1.jpg"
+                            <div class="pic"><img src="/medilab/assets/img/doctors/doctors-1.jpg"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>Walter White</h4>
@@ -496,7 +496,7 @@
 
                     <div class="col-lg-6 mt-4 mt-lg-0">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ asset('medilab') }}/assets/img/doctors/doctors-2.jpg"
+                            <div class="pic"><img src="/medilab/assets/img/doctors/doctors-2.jpg"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>Sarah Jhonson</h4>
@@ -514,7 +514,7 @@
 
                     <div class="col-lg-6 mt-4">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ asset('medilab') }}/assets/img/doctors/doctors-3.jpg"
+                            <div class="pic"><img src="/medilab/assets/img/doctors/doctors-3.jpg"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>William Anderson</h4>
@@ -532,7 +532,7 @@
 
                     <div class="col-lg-6 mt-4">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ asset('medilab') }}/assets/img/doctors/doctors-4.jpg"
+                            <div class="pic"><img src="/medilab/assets/img/doctors/doctors-4.jpg"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>Amanda Jepson</h4>
@@ -655,7 +655,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('medilab') }}/assets/img/testimonials/testimonials-1.jpg"
+                                    <img src="/medilab/assets/img/testimonials/testimonials-1.jpg"
                                         class="testimonial-img" alt="">
                                     <h3>Saul Goodman</h3>
                                     <h4>Ceo &amp; Founder</h4>
@@ -673,7 +673,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('medilab') }}/assets/img/testimonials/testimonials-2.jpg"
+                                    <img src="/medilab/assets/img/testimonials/testimonials-2.jpg"
                                         class="testimonial-img" alt="">
                                     <h3>Sara Wilsson</h3>
                                     <h4>Designer</h4>
@@ -691,7 +691,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('medilab') }}/assets/img/testimonials/testimonials-3.jpg"
+                                    <img src="/medilab/assets/img/testimonials/testimonials-3.jpg"
                                         class="testimonial-img" alt="">
                                     <h3>Jena Karlis</h3>
                                     <h4>Store Owner</h4>
@@ -709,7 +709,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('medilab') }}/assets/img/testimonials/testimonials-4.jpg"
+                                    <img src="/medilab/assets/img/testimonials/testimonials-4.jpg"
                                         class="testimonial-img" alt="">
                                     <h3>Matt Brandon</h3>
                                     <h4>Freelancer</h4>
@@ -727,7 +727,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('medilab') }}/assets/img/testimonials/testimonials-5.jpg"
+                                    <img src="/medilab/assets/img/testimonials/testimonials-5.jpg"
                                         class="testimonial-img" alt="">
                                     <h3>John Larson</h3>
                                     <h4>Entrepreneur</h4>
@@ -766,9 +766,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-1.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-1.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-1.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -776,9 +775,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-2.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-2.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-2.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-2.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -786,9 +784,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-3.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-3.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-3.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-3.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -796,9 +793,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-4.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-4.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-4.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-4.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -806,9 +802,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-5.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-5.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-5.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-5.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -816,9 +811,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-6.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-6.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-6.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-6.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -826,9 +820,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-7.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-7.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-7.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-7.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -836,9 +829,8 @@
 
                     <div class="col-lg-3 col-md-4">
                         <div class="gallery-item">
-                            <a href="{{ asset('medilab') }}/assets/img/gallery/gallery-8.jpg"
-                                class="galelry-lightbox">
-                                <img src="{{ asset('medilab') }}/assets/img/gallery/gallery-8.jpg" alt=""
+                            <a href="/medilab/assets/img/gallery/gallery-8.jpg" class="galelry-lightbox">
+                                <img src="/medilab/assets/img/gallery/gallery-8.jpg" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
@@ -1012,14 +1004,14 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('medilab') }}/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="{{ asset('medilab') }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('medilab') }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="{{ asset('medilab') }}/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="{{ asset('medilab') }}/assets/vendor/php-email-form/validate.js"></script>
+    <script src="/medilab/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/medilab/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/medilab/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/medilab/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('medilab') }}/assets/js/main.js"></script>
+    <script src="/medilab/assets/js/main.js"></script>
 
 </body>
 
