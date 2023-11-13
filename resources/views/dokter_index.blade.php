@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ $judul }}</div>
-
                     <div class="card-body">
+                        <a href="/dokter/create" class="btn btn-primary">Tambah Dokter</a>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -30,11 +30,10 @@
                                         <td>{{ $item->nomor_hp }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('dokter.edit', $item->id) }}" class="btn btn-primary">
+                                            <a href="/dokter/{{ $item->id }}/edit" class="btn btn-primary">
                                                 Edit
                                             </a>
-                                            <form action="{{ route('dokter.destroy', $item->id) }}" method="POST"
-                                                class="d-inline"
+                                            <form action="/dokter/{{ $item->id }}" method="POST" class="d-inline"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                 @method('DELETE')
                                                 @csrf

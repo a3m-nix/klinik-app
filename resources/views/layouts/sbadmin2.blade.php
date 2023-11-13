@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('home') }}">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -65,11 +65,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Dokter:</h6>
-                        <a class="collapse-item" href="{{ route('dokter.create') }}">Tambah Data</a>
-                        <a class="collapse-item" href="{{ route('dokter.index') }}">Tampil Data</a>
+                        <a class="collapse-item" href="/dokter/create">Tambah Data</a>
+                        <a class="collapse-item" href="/dokter">Tampil Data</a>
                         <h6 class="collapse-header">Data Pasien:</h6>
-                        <a class="collapse-item" href="{{ route('pasien.create') }}">Tambah Data</a>
-                        <a class="collapse-item" href="{{ route('pasien.index') }}">Tampil Data</a>
+                        <a class="collapse-item" href="/pasien/create">Tambah Data</a>
+                        <a class="collapse-item" href="/pasien">Tampil Data</a>
                     </div>
                 </div>
             </li>
@@ -85,8 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrasi:</h6>
-                        <a class="collapse-item" href="{{ route('administrasi.index') }}">Tampil Data</a>
-                        <a class="collapse-item" href="{{ route('administrasi.create') }}">Tambah Data</a>
+                        <a class="collapse-item" href="/administrasi">Tampil Data</a>
+                        <a class="collapse-item" href="/administrasi/create">Tambah Data</a>
                     </div>
                 </div>
             </li>

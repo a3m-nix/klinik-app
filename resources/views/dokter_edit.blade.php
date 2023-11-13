@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">EDIT DOKTER {{ $dokter->nama_dokter }}</div>
                     <div class="card-body">
-                        <form action="{{ route('dokter.update', $dokter->id) }}" method="POST">
+                        <form action="/dokter/update/{{ $dokter->id }}" method="POST">
                             @method('PUT')
                             @csrf
                             <div class="form-group mt-1">

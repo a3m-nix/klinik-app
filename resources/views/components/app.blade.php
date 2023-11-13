@@ -35,14 +35,59 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <li class="nav-item">
-                                <a href="/home" class="nav-link">Beranda</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Data Klinik
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/pasien">Data Pasien</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('pasien.create') }}">Tambah Pasien</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('dokter.index') }}">Data Dokter</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('dokter.create') }}">Tambah Dokter</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Data Transaksi
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Data Administrasi</a></li>
+                                    <li><a class="dropdown-item" href="#">Tambah Administrasi</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Data Laporan
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Laporan Pasien
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('dokter.laporan') }}">
+                                            Laporan Dokter
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Laporan Administrasi</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('dokter') }}" class="nav-link">Data Dokter</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('dokter/laporan') }}" class="nav-link">Laporan Dokter</a>
+                                <a class="nav-link">Tentang</a>
                             </li>
                         @endauth
                     </ul>
@@ -89,7 +134,7 @@
 
         <main class="py-4">
             @include('flash::message')
-            @yield('content')
+            {{ $slot ?? '' }}
         </main>
     </div>
 </body>

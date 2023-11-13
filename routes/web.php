@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [RegistrasiPasienController::class, 'create']);
 Route::resource('registrasipasien', RegistrasiPasienController::class);
 
+Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
+Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
+
 Route::resource('dokter', DokterController::class);
 Route::resource('pasien', PasienController::class);
 Route::resource('administrasi', AdministrasiController::class);
-
-Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
-Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
 /* 
 Route::get('/', function () {
     return view('welcome');
