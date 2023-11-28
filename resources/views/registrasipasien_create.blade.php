@@ -11,12 +11,12 @@
                         <form action="{{ route('registrasipasien.store') }}" method="POST">
                             @method('POST')
                             @csrf
-                            <div class="form-group mt-1">
+                            <div class="form-group mt-2">
                                 <label for="noktp">Nomor KTP</label>
                                 <input type="text" name="noktp" class="form-control" value="{{ old('noktp') }}" />
                                 <span class="text-danger">{{ $errors->first('noktp') }}</span>
                             </div>
-                            <div class="form-group mt-1">
+                            <div class="form-group mt-3">
                                 <label for="kode_pasien">Kode Pasien</label>
                                 <input type="text" name="kode_pasien" class="form-control"
                                     value="{{ old('kode_pasien') }}" />
@@ -28,7 +28,7 @@
                                     value="{{ old('nama_pasien') }}" />
                                 <span class="text-danger">{{ $errors->first('nama_pasien') }}</span>
                             </div>
-                            <div class="form-group mt-3">
+                            <div class="form-group mt-3 mb-3">
                                 <label for="jenis_kelamin">Jenis Kelamin</label>
                                 <select name="jenis_kelamin" class="form-control">
                                     @foreach ($list_jk as $key => $value)
@@ -55,13 +55,14 @@
                                 </label>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="alamat">Alamat</label>
                                 <textarea name="alamat" class="form-control" rows="3">{{ old('alamat') }}</textarea>
                             </div>
 
+
                             <div class="form-group mt-2">
-                                <button type="submit" class="btn btn-primary">SIMPAN</button>
+                                <button type="submit" class="btn btn-primary">DAFTAR</button>
                             </div>
                         </form>
                     </div>

@@ -15,6 +15,7 @@
                                     <th>Kode</th>
                                     <th>Tanggal</th>
                                     <th>Nama Pasien</th>
+                                    <th>Poli</th>
                                     <th>Nama Dokter</th>
                                     <th>Biaya</th>
                                     <th>Aksi</th>
@@ -27,8 +28,9 @@
                                         <td>{{ $item->kode_administrasi }}</td>
                                         <td>{{ $item->tanggal->format('d F Y') }}</td>
                                         <td>{{ $item->pasien->nama_pasien }}</td>
+                                        <td>{{ $item->poli }}</td>
                                         <td>{{ $item->dokter->nama_dokter }}</td>
-                                        <td>Rp. {{ number_format($item->biaya) }}</td>
+                                        <td>Rp. {{ number_format($item->biaya, 0, ',', '.') }}</td>
                                         <td>
                                             <a href="{{ route('administrasi.edit', $item->id) }}" class="btn btn-primary">
                                                 Edit

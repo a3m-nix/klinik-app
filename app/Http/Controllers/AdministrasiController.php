@@ -23,7 +23,7 @@ class AdministrasiController extends Controller
     {
 
         $data['list_pasien'] = \App\Models\Pasien::selectRaw("id, concat(kode_pasien, ' - ', nama_pasien) as tampil")->pluck('tampil', 'id');
-        $data['list_dokter'] = \App\Models\Dokter::selectRaw("id, concat(kode_dokter, ' - ', nama_dokter) as tampil")->pluck('tampil', 'id');
+        $data['list_poli'] = \App\Models\Poli::get();
         return view('administrasi_create', $data);
     }
 
@@ -33,13 +33,26 @@ class AdministrasiController extends Controller
     public function store(Request $request)
     {
         $validasiData = $request->validate([
-            'kode_administrasi' => 'required|unique:administrasis,kode_administrasi',
             'pasien_id' => 'required',
-            'dokter_id' => 'required',
+            'poli_id' => 'required',
             'tanggal' => 'required',
-            'biaya' => 'required',
+            'keluhan' => 'required',
         ]);
-        \App\Models\Administrasi::create($validasiData);
+        $poli = \App\Models\Poli::findOrfail($request->poli_id);
+        $kodeAdm = \App\Models\Administrasi::orderBy('id', 'desc')->first();
+        $kode = 'ADM0001';
+        if ($kodeAdm) {
+            $kode = 'ADM' . sprintf('%04d', $kodeAdm->id + 1);
+        }
+        $adm = new \App\Models\Administrasi();
+        $adm->kode_administrasi = $kode;
+        $adm->poli = $poli->nama;
+        $adm->pasien_id = $request->pasien_id;
+        $adm->tanggal = $request->tanggal;
+        $adm->keluhan = strip_tags($request->keluhan);
+        $adm->dokter_id = $poli->dokter_id;
+        $adm->biaya = $poli->biaya;
+        $adm->save();
         flash('Data sudah disimpan')->success();
         return back();
     }
@@ -86,6 +99,9 @@ class AdministrasiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $administrasi = \App\Models\Administrasi::findOrfail($id);
+        $administrasi->delete();
+        flash('Data sudah dihapus')->success();
+        return back();
     }
 }

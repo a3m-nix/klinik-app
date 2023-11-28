@@ -49,6 +49,7 @@
                                                 'route' => ['pasien.destroy', $item->id],
                                                 'method' => 'delete',
                                                 'style' => 'display:inline',
+                                                'onsubmit' => 'return confirm("Apakah anda yakin?")',
                                             ]) !!}
                                             {!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}

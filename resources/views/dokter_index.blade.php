@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ $judul }}</div>
                     <div class="card-body">
-                        <a href="/dokter/create" class="btn btn-primary">Tambah Dokter</a>
+                        <a href="/dokter/create" class="btn btn-primary mb-2">Tambah Dokter</a>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>

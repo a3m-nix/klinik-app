@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>{{ env('APP_NAME') }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('sbadmin2') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-1">{{ env('APP_NAME') }}</div>
             </a>
 
             <!-- Divider -->
@@ -62,31 +62,47 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Klinik</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo"
+                    class="collapse 
+                {{ Route::is('dokter.*') ? 'show' : '' }} 
+                {{ Route::is('pasien.*') ? 'show' : '' }}
+                {{ Route::is('poli.*') ? 'show' : '' }}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Dokter:</h6>
-                        <a class="collapse-item" href="/dokter/create">Tambah Data</a>
-                        <a class="collapse-item" href="/dokter">Tampil Data</a>
+                        <a class="collapse-item {{ Route::is('dokter.create') ? 'active' : '' }}"
+                            href="/dokter/create">Tambah Dokter</a>
+                        <a class="collapse-item {{ Route::is('dokter.index') ? 'active' : '' }}" href="/dokter">
+                            Data Dokter</a>
+                        <h6 class="collapse-header">Data Poli:</h6>
+                        <a class="collapse-item {{ Route::is('poli.create') ? 'active' : '' }}"
+                            href="/poli/create">Tambah Poli</a>
+                        <a class="collapse-item {{ Route::is('poli.index') ? 'active' : '' }}" href="/poli">
+                            Data Poli</a>
                         <h6 class="collapse-header">Data Pasien:</h6>
-                        <a class="collapse-item" href="/pasien/create">Tambah Data</a>
-                        <a class="collapse-item" href="/pasien">Tampil Data</a>
+                        <a class="collapse-item {{ Route::is('pasien.create') ? 'active' : '' }}"
+                            href="/pasien/create">Tambah Pasien</a>
+                        <a class="collapse-item {{ Route::is('pasien.index') ? 'active' : '' }}" href="/pasien">
+                            Data Pasien</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Data Administrasi</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse {{ Route::is('administrasi.*') ? 'show' : '' }} "
+                    aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrasi:</h6>
-                        <a class="collapse-item" href="/administrasi">Tampil Data</a>
-                        <a class="collapse-item" href="/administrasi/create">Tambah Data</a>
+                        <a class="collapse-item {{ Route::is('administrasi.create') ? 'active' : '' }}"
+                            href="/administrasi/create">Tambah Data</a>
+                        <a class="collapse-item {{ Route::is('administrasi.index') ? 'active' : '' }}"
+                            href="/administrasi">Tampil Data</a>
                     </div>
                 </div>
             </li>
@@ -109,7 +125,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Laporan:</h6>
-                        <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan Pasien</a>
+                        <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan
+                            Pasien</a>
                         <a class="collapse-item" href="{{ route('dokter.laporan') }}" target="_blank">Laporan
                             Dokter</a>
                         <a class="collapse-item" href="">Laporan Administrasi</a>
@@ -124,16 +141,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                    and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                    Pro!</a>
-            </div>
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -316,7 +323,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->

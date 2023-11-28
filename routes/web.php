@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PoliController;
 use App\Http\Controllers\RegistrasiPasienController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -21,17 +22,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [RegistrasiPasienController::class, 'create']);
 Route::resource('registrasipasien', RegistrasiPasienController::class);
 
-Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
-Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
+Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
+    Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
 
-Route::resource('dokter', DokterController::class);
-Route::resource('pasien', PasienController::class);
-Route::resource('administrasi', AdministrasiController::class);
-/* 
-Route::get('/', function () {
-    return view('welcome');
-}); */
+    Route::resource('poli', PoliController::class);
+    Route::resource('dokter', DokterController::class);
+    Route::resource('pasien', PasienController::class);
+    Route::resource('administrasi', AdministrasiController::class);
+});
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

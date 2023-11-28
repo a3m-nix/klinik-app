@@ -4,23 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PasienController extends Controller
+class PoliController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cari = request('q');
-        if ($cari) {
-            $data['pasien'] = \App\Models\Pasien::where('nama_pasien', 'like', '%' . $cari . '%')
-                ->orWhere('kode_pasien', 'like', '%' . $cari . '%')
-                ->paginate(10);
-        } else {
-            $data['pasien'] = \App\Models\Pasien::paginate(10);
-        }
-        $data['judul'] = 'Data-data Pasien';
-        return view('pasien_index', $data);
+        $data['poli'] = \App\Models\Poli::latest()->paginate(10);
+        $data['judul'] = 'Data-data Poli';
+        return view('poli_index', $data);
     }
 
     /**
@@ -28,16 +21,13 @@ class PasienController extends Controller
      */
     public function create()
     {
-        $data['pasien'] = new \App\Models\Pasien();
-        $data['route'] = 'pasien.store';
+        $data['poli'] = new \App\Models\Poli();
+        $data['route'] = 'poli.store';
         $data['method'] = 'post';
         $data['tombol'] = 'Simpan';
         $data['judul'] = 'Tambah Data';
-        $data['list_jk'] = [
-            'Pria' => 'Pria',
-            'Wanita' => 'Wanita',
-        ];
-        return view('pasien_form', $data);
+        $data['list_dokter'] = \App\Models\Dokter::get();
+        return view('poli_form', $data);
     }
 
     /**
@@ -46,15 +36,13 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $validasiData = $request->validate([
-            'kode_pasien' => 'required|unique:pasiens,kode_pasien',
-            'nama_pasien' => 'required',
-            'jenis_kelamin' => 'required',
-            'status' => 'required',
-            'alamat' => 'required',
+            'nama' => 'required|unique:polis',
+            'dokter_id' => 'required',
+            'biaya' => 'required|numeric',
         ]);
-        $dokter = new \App\Models\Pasien();
-        $dokter->fill($validasiData);
-        $dokter->save();
+        $poli = new \App\Models\Poli();
+        $poli->fill($validasiData);
+        $poli->save();
 
         flash('Data berhasil disimpan');
         return back();
@@ -94,14 +82,15 @@ class PasienController extends Controller
     public function update(Request $request, string $id)
     {
         $validasiData = $request->validate([
-            'nama_pasien' => 'required',
+            'kode_dokter' => 'required|unique:dokters,kode_dokter,' . $id,
+            'nama_dokter' => 'required',
             'spesialis' => 'required',
             'spesialis' => 'required',
             'nomor_hp' => 'required',
         ]);
-        $pasien = \App\Models\Pasien::findOrFail($id);
-        $pasien->fill($validasiData);
-        $pasien->save();
+        $dokter = \App\Models\Pasien::findOrFail($id);
+        $dokter->fill($validasiData);
+        $dokter->save();
 
         flash('Data berhasil diubah');
         return redirect()->route('dokter.index');
@@ -112,12 +101,8 @@ class PasienController extends Controller
      */
     public function destroy(string $id)
     {
-        $pasien = \App\Models\Pasien::findOrFail($id);
-        if ($pasien->administrasi->count() >= 1) {
-            flash('Data tidak bisa dihapus karena sudah digunakan');
-            return back();
-        }
-        $pasien->delete();
+        $dokter = \App\Models\Pasien::findOrFail($id);
+        $dokter->delete();
         flash('Data berhasil dihapus');
         return back();
     }

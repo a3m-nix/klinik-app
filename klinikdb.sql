@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2023 at 02:29 AM
+-- Generation Time: Nov 28, 2023 at 09:46 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.29
 
@@ -33,15 +33,11 @@ CREATE TABLE `administrasis` (
   `tanggal` date NOT NULL,
   `pasien_id` int(11) NOT NULL,
   `dokter_id` int(11) NOT NULL,
-  `biaya` int(11) NOT NULL
+  `poli` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `biaya` int(11) NOT NULL,
+  `keluhan` text COLLATE utf8mb4_unicode_ci,
+  `diagnosis` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `administrasis`
---
-
-INSERT INTO `administrasis` (`id`, `kode_administrasi`, `tanggal`, `pasien_id`, `dokter_id`, `biaya`) VALUES
-(1, 'ADM1002', '2023-06-22', 2, 4, 100001);
 
 -- --------------------------------------------------------
 
@@ -107,7 +103,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2014_10_12_100000_create_password_resets_table', 1),
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(6, '2023_11_28_090702_create_polis_table', 2);
 
 -- --------------------------------------------------------
 
@@ -131,13 +128,10 @@ CREATE TABLE `pasiens` (
 --
 
 INSERT INTO `pasiens` (`id`, `kode_pasien`, `nama_pasien`, `jenis_kelamin`, `status`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 'P111', 'budi pas', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
-(2, 'P112', 'wanti pas', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
 (3, 'P113', 'maman', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
 (4, 'P114', 'wisa', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
 (5, 'P115', 'wisata', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
-(6, 'PS1001', 'budibudibudi', 'Pria', 'Sudah Menikah', 'tjhjalan', '2023-06-22 04:31:25', '2023-06-22 04:31:25'),
-(7, 'Impedit dignissimos', 'Error sint accusamus', 'Pria', 'Sudah Menikah', 'Facere vel quaerat f', '2023-11-09 04:20:28', '2023-11-09 04:20:28');
+(6, 'PS1001', 'budibudibudi', 'Pria', 'Sudah Menikah', 'tjhjalan', '2023-06-22 04:31:25', '2023-06-22 04:31:25');
 
 -- --------------------------------------------------------
 
@@ -181,6 +175,28 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `polis`
+--
+
+CREATE TABLE `polis` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dokter_id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `biaya` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `polis`
+--
+
+INSERT INTO `polis` (`id`, `dokter_id`, `nama`, `biaya`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Mata', 15000, '2023-11-28 02:21:43', '2023-11-28 02:21:43');
 
 -- --------------------------------------------------------
 
@@ -262,6 +278,13 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `polis`
+--
+ALTER TABLE `polis`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `polis_dokter_id_index` (`dokter_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -282,7 +305,7 @@ ALTER TABLE `administrasis`
 -- AUTO_INCREMENT for table `dokters`
 --
 ALTER TABLE `dokters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -294,7 +317,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pasiens`
@@ -307,6 +330,12 @@ ALTER TABLE `pasiens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `polis`
+--
+ALTER TABLE `polis`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
