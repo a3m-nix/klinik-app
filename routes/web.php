@@ -26,7 +26,6 @@ Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
     Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
-
     Route::resource('poli', PoliController::class);
     Route::resource('dokter', DokterController::class);
     Route::resource('pasien', PasienController::class);

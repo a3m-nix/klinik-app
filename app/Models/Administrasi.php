@@ -14,11 +14,15 @@ class Administrasi extends Model
 
     public function pasien()
     {
-        return $this->belongsTo(Pasien::class);
+        return $this->belongsTo(Pasien::class)->withDefault([
+            'nama_pasien' => 'Data sudah dihapus',
+        ]);
     }
 
     public function dokter()
     {
-        return $this->belongsTo(Dokter::class);
+        return $this->belongsTo(Dokter::class)->withDefault([
+            'nama_dokter' => 'Data sudah dihapus',
+        ]);
     }
 }

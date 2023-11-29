@@ -14,10 +14,8 @@
                                     <th>ID</th>
                                     <th>Kode</th>
                                     <th>Nama</th>
-                                    <th>Spesialis</th>
-                                    <th>Nomor HP</th>
                                     <th>Tanggal Buat</th>
-                                    <th>Aksi</th>
+                                    <th width="16%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,9 +23,24 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->kode_dokter }}</td>
-                                        <td>{{ $item->nama_dokter }}</td>
-                                        <td>{{ $item->spesialis }}</td>
-                                        <td>{{ $item->nomor_hp }}</td>
+                                        <td>
+                                            <div class="row">
+                                                @if ($item->foto)
+                                                    <div class="col-md-4">
+                                                        <a href="{{ Storage::url($item->foto) }}" target="blank">
+                                                            <img src="{{ Storage::url($item->foto) }}" alt="Foto"
+                                                                width="100px" height="100px"
+                                                                class="img img-thumbnail align-text-top">
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                                <div class="col-md-8">
+                                                    <div>Nama: {{ $item->nama_dokter }}</div>
+                                                    <div>Spesialis: {{ $item->spesialis }}</div>
+                                                    <div>Nomor HP: {{ $item->nomor_hp }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             <a href="/dokter/{{ $item->id }}/edit" class="btn btn-primary">

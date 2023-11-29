@@ -9,6 +9,7 @@
                         {{ $judul }}
                     </div>
                     <div class="card-body">
+                        <a href="/pasien/create" class="btn btn-primary mb-2">Tambah Pasien</a>
                         <div class="row mb-2">
                             <div class="col">
                                 <form method="GET">
@@ -30,32 +31,36 @@
                                     <th>Nama</th>
                                     <th>Nomor HP</th>
                                     <th>Tanggal Buat</th>
-                                    <th>Aksi</th>
+                                    <th width="18%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pasien as $item)
+                                @forelse ($pasien as $item)
+                                    @foreach ($pasien as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->kode_pasien }}</td>
+                                            <td>{{ $item->nama_pasien }}</td>
+                                            <td>{{ $item->nomor_hp }}</td>
+                                            <td>{{ $item->created_at }}</td>
+                                            <td>
+                                                <a href="/pasien/{{ $item->id }}/edit" class="btn btn-primary">
+                                                    Edit
+                                                </a>
+                                                <form action="/pasien/{{ $item->id }}" method="POST" class="d-inline"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @empty
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->kode_pasien }}</td>
-                                        <td>{{ $item->nama_pasien }}</td>
-                                        <td>{{ $item->nomor_hp }}</td>
-                                        <td>{{ $item->created_at }}</td>
-                                        <td>
-                                            <a href="{{ route('pasien.edit', $item->id) }}" class="btn btn-primary">
-                                                Edit
-                                            </a>
-                                            {!! Form::open([
-                                                'route' => ['pasien.destroy', $item->id],
-                                                'method' => 'delete',
-                                                'style' => 'display:inline',
-                                                'onsubmit' => 'return confirm("Apakah anda yakin?")',
-                                            ]) !!}
-                                            {!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        <td colspan="6" class="text-center">Data tidak ada</td>
                                     </tr>
-                                @endforeach
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

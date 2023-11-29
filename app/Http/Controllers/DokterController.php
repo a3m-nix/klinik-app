@@ -37,13 +37,25 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         $validasiData = $request->validate([
-            'kode_dokter' => 'required|unique:dokters,kode_dokter',
             'nama_dokter' => 'required',
             'spesialis' => 'required',
-            'spesialis' => 'required',
             'nomor_hp' => 'required',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048'
         ]);
+        $kodeQuery = \App\Models\Dokter::orderBy('id', 'desc')->first();
+        $kode = 'D0001';
+        if ($kodeQuery) {
+            $kode = 'D' . sprintf('%04d', $kodeQuery->id + 1);
+        }
         $dokter = new \App\Models\Dokter();
+
+        if ($request->hasFile('foto')) {
+            unset($validasiData['foto']);
+            $path = $request->file('foto')->store('public/foto_dokter');
+            $dokter->foto = $path;
+        }
+
+        $dokter->kode_dokter = $kode;
         $dokter->fill($validasiData);
         $dokter->save();
 
@@ -81,13 +93,18 @@ class DokterController extends Controller
     public function update(Request $request, string $id)
     {
         $validasiData = $request->validate([
-            'kode_dokter' => 'required|unique:dokters,kode_dokter,' . $id,
             'nama_dokter' => 'required',
             'spesialis' => 'required',
-            'spesialis' => 'required',
             'nomor_hp' => 'required',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048'
         ]);
+
         $dokter = \App\Models\Dokter::findOrFail($id);
+        if ($request->hasFile('foto')) {
+            unset($validasiData['foto']);
+            $path = $request->file('foto')->store('public/foto_dokter');
+            $dokter->foto = $path;
+        }
         $dokter->fill($validasiData);
         $dokter->save();
 
@@ -102,7 +119,7 @@ class DokterController extends Controller
     {
         $dokter = \App\Models\Dokter::findOrFail($id);
         if ($dokter->administrasi->count() >= 1) {
-            flash('Data tidak bisa dihapus karena sudah digunakan');
+            flash('Data tidak bisa dihapus karena sudah digunakan')->error();
             return back();
         }
         $dokter->delete();

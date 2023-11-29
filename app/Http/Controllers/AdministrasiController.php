@@ -82,16 +82,14 @@ class AdministrasiController extends Controller
     public function update(Request $request, string $id)
     {
         $validasiData = $request->validate([
-            'kode_administrasi' => 'required|unique:administrasis,kode_administrasi,' . $id,
-            'pasien_id' => 'required',
-            'dokter_id' => 'required',
-            'tanggal' => 'required',
-            'biaya' => 'required',
+            'diagnosis' => 'required',
         ]);
         $administrasi = \App\Models\Administrasi::findOrfail($id);
-        $administrasi->update($validasiData);
+        $administrasi->diagnosis = strip_tags($request->diagnosis);
+        $administrasi->status = 'selesai';
+        $administrasi->save();
         flash('Data sudah disimpan')->success();
-        return back();
+        return redirect('/administrasi');
     }
 
     /**

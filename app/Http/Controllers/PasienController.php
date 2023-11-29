@@ -17,7 +17,7 @@ class PasienController extends Controller
                 ->orWhere('kode_pasien', 'like', '%' . $cari . '%')
                 ->paginate(10);
         } else {
-            $data['pasien'] = \App\Models\Pasien::paginate(10);
+            $data['pasien'] = \App\Models\Pasien::latest()->paginate(10);
         }
         $data['judul'] = 'Data-data Pasien';
         return view('pasien_index', $data);
@@ -37,7 +37,7 @@ class PasienController extends Controller
             'Pria' => 'Pria',
             'Wanita' => 'Wanita',
         ];
-        return view('pasien_form', $data);
+        return view('pasien_create', $data);
     }
 
     /**
@@ -46,15 +46,21 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $validasiData = $request->validate([
-            'kode_pasien' => 'required|unique:pasiens,kode_pasien',
             'nama_pasien' => 'required',
             'jenis_kelamin' => 'required',
             'status' => 'required',
+            'nomor_hp' => 'required',
             'alamat' => 'required',
         ]);
-        $dokter = new \App\Models\Pasien();
-        $dokter->fill($validasiData);
-        $dokter->save();
+        $kodeQuery = \App\Models\Pasien::orderBy('id', 'desc')->first();
+        $kode = 'P0001';
+        if ($kodeQuery) {
+            $kode = 'P' . sprintf('%04d', $kodeQuery->id + 1);
+        }
+        $pasien = new \App\Models\Pasien();
+        $pasien->kode_pasien = $kode;
+        $pasien->fill($validasiData);
+        $pasien->save();
 
         flash('Data berhasil disimpan');
         return back();
@@ -74,18 +80,8 @@ class PasienController extends Controller
     public function edit(string $id)
     {
         $data['pasien'] = \App\Models\Pasien::findOrFail($id);
-        $data['route'] = ['dokter.update', $id];
-        $data['method'] = 'post';
-        $data['tombol'] = 'Simpan';
         $data['judul'] = 'Tambah Data';
-        $data['list_sp'] = [
-            'Umum' => 'Umum',
-            'Gigi' => 'Gigi',
-            'Kandungan' => 'Kandungan',
-            'Anak' => 'Anak',
-            'Bedah' => 'Bedah',
-        ];
-        return view('dokter_form', $data);
+        return view('pasien_edit', $data);
     }
 
     /**
@@ -95,8 +91,8 @@ class PasienController extends Controller
     {
         $validasiData = $request->validate([
             'nama_pasien' => 'required',
-            'spesialis' => 'required',
-            'spesialis' => 'required',
+            'jenis_kelamin' => 'required',
+            'status' => 'required',
             'nomor_hp' => 'required',
         ]);
         $pasien = \App\Models\Pasien::findOrFail($id);
@@ -104,7 +100,7 @@ class PasienController extends Controller
         $pasien->save();
 
         flash('Data berhasil diubah');
-        return redirect()->route('dokter.index');
+        return redirect('pasien');
     }
 
     /**
@@ -114,7 +110,7 @@ class PasienController extends Controller
     {
         $pasien = \App\Models\Pasien::findOrFail($id);
         if ($pasien->administrasi->count() >= 1) {
-            flash('Data tidak bisa dihapus karena sudah digunakan');
+            flash('Data tidak bisa dihapus karena sudah digunakan')->error();
             return back();
         }
         $pasien->delete();

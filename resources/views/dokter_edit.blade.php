@@ -3,25 +3,28 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">EDIT DOKTER {{ $dokter->nama_dokter }}</div>
                     <div class="card-body">
-                        <form action="/dokter/update/{{ $dokter->id }}" method="POST">
+                        <form action="/dokter/{{ $dokter->id }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="form-group mt-1">
-                                <label for="kode_dokter">Kode Dokter</label>
-                                <input class="form-control" type="text" name="kode_dokter"
-                                    value="{{ $dokter->kode_dokter ?? old('kode_dokter') }}">
-                                <span class="text-danger">{{ $errors->first('kode_dokter') }}</span>
-                            </div>
-                            <div class="form-group mt-3">
                                 <label for="nama_dokter">Nama Dokter</label>
                                 <input class="form-control" type="text" name="nama_dokter"
                                     value="{{ $dokter->nama_dokter ?? old('nama_dokter') }}">
                                 <span class="text-danger">{{ $errors->first('nama_dokter') }}</span>
                             </div>
+                            <div class="form-group mt-3">
+                                <label for="foto">Foto Dokter</label>
+                                <input class="form-control" type="file" name="foto" value="{{ old('foto') }}">
+                                <span class="text-danger">{{ $errors->first('foto') }}</span>
+                            </div>
+                            @if ($dokter->foto)
+                                <img src="{{ Storage::url($dokter->foto) }}" width="100px" height="100px"
+                                    alt="foto dokter">
+                            @endif
                             <div class="form-group mt-3">
                                 <label for="spesialis">Spesialis</label>
                                 <select name="spesialis" class="form-control">
