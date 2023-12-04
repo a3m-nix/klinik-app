@@ -36,26 +36,24 @@
                             </thead>
                             <tbody>
                                 @forelse ($pasien as $item)
-                                    @foreach ($pasien as $item)
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->kode_pasien }}</td>
-                                            <td>{{ $item->nama_pasien }}</td>
-                                            <td>{{ $item->nomor_hp }}</td>
-                                            <td>{{ $item->created_at }}</td>
-                                            <td>
-                                                <a href="/pasien/{{ $item->id }}/edit" class="btn btn-primary">
-                                                    Edit
-                                                </a>
-                                                <form action="/pasien/{{ $item->id }}" method="POST" class="d-inline"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->kode_pasien }}</td>
+                                        <td>{{ $item->nama_pasien }}</td>
+                                        <td>{{ $item->nomor_hp }}</td>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td>
+                                            <a href="/pasien/{{ $item->id }}/edit" class="btn btn-primary">
+                                                Edit
+                                            </a>
+                                            <form action="/pasien/{{ $item->id }}" method="POST" class="d-inline"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @empty
                                     <tr>
                                         <td colspan="6" class="text-center">Data tidak ada</td>
