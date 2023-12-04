@@ -14,6 +14,7 @@
                                     <th>ID</th>
                                     <th>Kode</th>
                                     <th>Nama</th>
+                                    <th>Total ADM</th>
                                     <th width="22%">Aksi</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,9 @@
                                                     <div>Username: <strong>{{ $item->nomor_hp }}@dokter.com</strong></div>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            {{ $item->administrasi->count() }}
                                         </td>
                                         <td>
                                             <a href="/dokter/{{ $item->id }}" class="btn btn-info">
