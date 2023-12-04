@@ -8,22 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('polis', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('dokter_id')->index();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('dokter_id')->index();
             $table->string('nama');
             $table->double('biaya');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('polis');
     }

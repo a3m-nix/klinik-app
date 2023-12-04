@@ -42,11 +42,24 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ Route::is('home*') ? 'active' : '' }}">
                 <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            @if (auth()->user()->role == 'admin')
+                <li class="nav-item {{ Route::is('user.*') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/user">
+                        <i class="fas fa -fw fa-users"></i>
+                        <span>Data User</span></a>
+                </li>
+            @endif
+            <li class="nav-item {{ Route::is('profil.*') ? 'active' : '' }} ">
+                <a class="nav-link" href="/profil/create">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Profil</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -57,37 +70,40 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Data Klinik</span>
-                </a>
-                <div id="collapseTwo"
-                    class="collapse 
+            @if (auth()->user()->role == 'admin')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Data Klinik</span>
+                    </a>
+                    <div id="collapseTwo"
+                        class="collapse 
                 {{ Route::is('dokter.*') ? 'show' : '' }} 
                 {{ Route::is('pasien.*') ? 'show' : '' }}
                 {{ Route::is('poli.*') ? 'show' : '' }}"
-                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Pasien:</h6>
-                        <a class="collapse-item {{ Route::is('pasien.create') ? 'active' : '' }}"
-                            href="/pasien/create">Tambah Pasien</a>
-                        <a class="collapse-item {{ Route::is('pasien.index') ? 'active' : '' }}" href="/pasien">
-                            Data Pasien</a>
-                        <h6 class="collapse-header">Data Dokter:</h6>
-                        <a class="collapse-item {{ Route::is('dokter.create') ? 'active' : '' }}"
-                            href="/dokter/create">Tambah Dokter</a>
-                        <a class="collapse-item {{ Route::is('dokter.index') ? 'active' : '' }}" href="/dokter">
-                            Data Dokter</a>
-                        <h6 class="collapse-header">Data Poli:</h6>
-                        <a class="collapse-item {{ Route::is('poli.create') ? 'active' : '' }}"
-                            href="/poli/create">Tambah Poli</a>
-                        <a class="collapse-item {{ Route::is('poli.index') ? 'active' : '' }}" href="/poli">
-                            Data Poli</a>
+                        aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Data Pasien:</h6>
+                            <a class="collapse-item {{ Route::is('pasien.create') ? 'active' : '' }}"
+                                href="/pasien/create">Tambah Pasien</a>
+                            <a class="collapse-item {{ Route::is('pasien.index') ? 'active' : '' }}" href="/pasien">
+                                Data Pasien</a>
+                            <h6 class="collapse-header">Data Dokter:</h6>
+                            <a class="collapse-item {{ Route::is('dokter.create') ? 'active' : '' }}"
+                                href="/dokter/create">Tambah Dokter</a>
+                            <a class="collapse-item {{ Route::is('dokter.index') ? 'active' : '' }}" href="/dokter">
+                                Data Dokter</a>
+                            <h6 class="collapse-header">Data Poli:</h6>
+                            <a class="collapse-item {{ Route::is('poli.create') ? 'active' : '' }}"
+                                href="/poli/create">Tambah Poli</a>
+                            <a class="collapse-item {{ Route::is('poli.index') ? 'active' : '' }}" href="/poli">
+                                Data Poli</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endif
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -123,7 +139,8 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Laporan:</h6>
                         <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan
@@ -260,22 +277,15 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle"
+                                    src="{{ asset('sbadmin2/img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/profil/create">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal"

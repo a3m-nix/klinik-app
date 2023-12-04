@@ -9,6 +9,7 @@
                     <div class="card-body">
                         <form action="/pasien" method="POST">
                             @method('POST')
+                            @csrf
                             <div class="row mb-3">
                                 <div class="col-md-6 form-group ">
                                     <label for="nama_pasien">Nama Pasien</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DokterController extends Controller
 {
@@ -11,7 +12,7 @@ class DokterController extends Controller
      */
     public function index()
     {
-        $data['dokter'] = \App\Models\Dokter::get();
+        $data['dokter'] = \App\Models\Dokter::latest()->get();
         $data['judul'] = 'Data-data Dokter';
         return view('dokter_index', $data);
     }
@@ -32,7 +33,8 @@ class DokterController extends Controller
         $validasiData = $request->validate([
             'nama_dokter' => 'required',
             'spesialis' => 'required',
-            'nomor_hp' => 'required',
+            'password' => 'required',
+            'nomor_hp' => 'required|numeric|unique:dokters,nomor_hp',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048'
         ]);
         $kodeQuery = \App\Models\Dokter::orderBy('id', 'desc')->first();
@@ -40,20 +42,39 @@ class DokterController extends Controller
         if ($kodeQuery) {
             $kode = 'D' . sprintf('%04d', $kodeQuery->id + 1);
         }
-        $dokter = new \App\Models\Dokter();
 
-        if ($request->hasFile('foto')) {
-            //buang foto dari validasi data
-            unset($validasiData['foto']);
-            $path = $request->file('foto')->store('public/foto_dokter');
-            $dokter->foto = $path;
+        DB::beginTransaction();
+        try {
+            //simpan data dokter sebagai data user
+            $user = new \App\Models\User();
+            $user->name = $validasiData['nama_dokter'];
+            $user->email = $validasiData['nomor_hp'] . '@dokter.com';
+            $user->password = bcrypt($request->password);
+            $user->role = 'dokter';
+            $user->save();
+
+            $dokter = new \App\Models\Dokter();
+
+            if ($request->hasFile('foto')) {
+                //buang foto dari validasi data
+                unset($validasiData['foto']);
+                $path = $request->file('foto')->store('public/foto_dokter');
+                $dokter->foto = $path;
+            }
+            $dokter->user_id = $user->id;
+            $dokter->kode_dokter = $kode;
+            $dokter->nama_dokter = $request->nama_dokter;
+            $dokter->spesialis = $request->spesialis;
+            $dokter->nomor_hp = $request->nomor_hp;
+            $dokter->save();
+            DB::commit();
+            flash('Data berhasil disimpan');
+            return back();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            flash('Ops... Terjadi kesalahan,' . $e->getMessage())->error();
+            return back();
         }
-        $dokter->kode_dokter = $kode;
-        $dokter->fill($validasiData);
-        $dokter->save();
-
-        flash('Data berhasil disimpan');
-        return back();
     }
 
     /**

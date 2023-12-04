@@ -4,7 +4,9 @@ use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PoliController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegistrasiPasienController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +28,8 @@ Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
     Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
+    Route::resource('user', UserController::class);
+    Route::resource('profil', ProfilController::class);
     Route::resource('poli', PoliController::class);
     Route::resource('dokter', DokterController::class);
     Route::resource('pasien', PasienController::class);

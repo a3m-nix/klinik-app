@@ -25,7 +25,7 @@
                                         <td>{{ $item->kode_dokter }}</td>
                                         <td>
                                             <div class="row">
-                                                @if ($item->foto)
+                                                @if ($item->foto != '')
                                                     <div class="col-md-4">
                                                         <a href="{{ Storage::url($item->foto) }}" target="blank">
                                                             <img src="{{ Storage::url($item->foto) }}" alt="Foto"
@@ -38,6 +38,7 @@
                                                     <div>Nama: {{ $item->nama_dokter }}</div>
                                                     <div>Spesialis: {{ $item->spesialis }}</div>
                                                     <div>Nomor HP: {{ $item->nomor_hp }}</div>
+                                                    <div>Username: <strong>{{ $item->nomor_hp }}@dokter.com</strong></div>
                                                 </div>
                                             </div>
                                         </td>

@@ -36,6 +36,12 @@
                                 <input class="form-control" type="text" name="nomor_hp" value="{{ old('nomor_hp') }}">
                                 <span class="text-danger">{{ $errors->first('nomor_hp') }}</span>
                             </div>
+                            <div class="form-group mt-3">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="text" name="password" value="{{ old('password') }}">
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                            </div>
+
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn btn-primary">SIMPAN</button>
                             </div>
