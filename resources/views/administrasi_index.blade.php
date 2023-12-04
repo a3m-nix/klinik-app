@@ -17,7 +17,9 @@
                         {{ $judul }}
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('administrasi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+                        @if (auth()->user()->role != 'dokter')
+                            <a href="{{ route('administrasi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -67,13 +69,15 @@
                                                 <a href="/administrasi/{{ $item->id }}/edit" class="btn btn-primary">
                                                     Diagnosis
                                                 </a>
-                                                <form action="{{ route('administrasi.destroy', $item->id) }}"
-                                                    method="POST" class="d-inline"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
+                                                @if (auth()->user()->role == 'admin')
+                                                    <form action="{{ route('administrasi.destroy', $item->id) }}"
+                                                        method="POST" class="d-inline"
+                                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

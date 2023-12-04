@@ -60,17 +60,22 @@
                     <span>Profil</span></a>
             </li>
 
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Data Master
-            </div>
+            @if (auth()->user()->role == 'dokter')
+                <li class="nav-item {{ Route::is('administrasi.*') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/administrasi">
+                        <i class="fas fa -fw fa-users"></i>
+                        <span>Administrasi Pasien</span></a>
+                </li>
+            @endif
 
             <!-- Nav Item - Pages Collapse Menu -->
             @if (auth()->user()->role == 'admin')
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Data Master
+                </div>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
@@ -106,30 +111,33 @@
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Data Administrasi</span>
-                </a>
-                <div id="collapseUtilities" class="collapse {{ Route::is('administrasi.*') ? 'show' : '' }} "
-                    aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrasi:</h6>
-                        <a class="collapse-item {{ Route::is('administrasi.create') ? 'active' : '' }}"
-                            href="/administrasi/create">Tambah Adm</a>
-                        <a class="collapse-item {{ Route::is('administrasi.index') ? 'active' : '' }}"
-                            href="/administrasi">Data Adm</a>
+            @if (auth()->user()->role == 'admin' || auth()->user() == 'operator')
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Data Administrasi</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse {{ Route::is('administrasi.*') ? 'show' : '' }} "
+                        aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Administrasi:</h6>
+                            <a class="collapse-item {{ Route::is('administrasi.create') ? 'active' : '' }}"
+                                href="/administrasi/create">Tambah Adm</a>
+                            <a class="collapse-item {{ Route::is('administrasi.index') ? 'active' : '' }}"
+                                href="/administrasi">Data Adm</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endif
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Laporan
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -139,15 +147,15 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse {{ Route::is('laporan.*') ? 'show' : '' }} "
+                    aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Laporan:</h6>
                         <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan
                             Pasien</a>
                         <a class="collapse-item" href="{{ route('dokter.laporan') }}" target="_blank">Laporan
                             Dokter</a>
-                        <a class="collapse-item" href="">Laporan Administrasi</a>
+                        <a class="collapse-item" href="/laporan/administrasi">Laporan Administrasi</a>
                     </div>
                 </div>
             </li>
@@ -349,7 +357,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="/logout">Logout</a>
                 </div>
             </div>
         </div>

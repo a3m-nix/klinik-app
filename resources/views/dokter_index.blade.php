@@ -14,8 +14,7 @@
                                     <th>ID</th>
                                     <th>Kode</th>
                                     <th>Nama</th>
-                                    <th>Tanggal Buat</th>
-                                    <th width="16%">Aksi</th>
+                                    <th width="22%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,8 +41,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{{ $item->created_at }}</td>
                                         <td>
+                                            <a href="/dokter/{{ $item->id }}" class="btn btn-info">
+                                                Detail
+                                            </a>
                                             <a href="/dokter/{{ $item->id }}/edit" class="btn btn-primary">
                                                 Edit
                                             </a>

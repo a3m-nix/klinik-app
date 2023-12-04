@@ -82,7 +82,8 @@ class DokterController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data['dokter'] = \App\Models\Dokter::findOrFail($id);
+        return view('dokter_show', $data);
     }
 
     /**

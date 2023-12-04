@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\LaporanAdmController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfilController;
@@ -34,6 +35,12 @@ Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
     Route::resource('dokter', DokterController::class);
     Route::resource('pasien', PasienController::class);
     Route::resource('administrasi', AdministrasiController::class);
+    Route::get('laporan/administrasi', [LaporanAdmController::class, 'index'])->name('laporan.adm');
+});
+
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/login');
 });
 
 Auth::routes([
