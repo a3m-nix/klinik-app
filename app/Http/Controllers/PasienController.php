@@ -28,15 +28,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        $data['pasien'] = new \App\Models\Pasien();
-        $data['route'] = 'pasien.store';
-        $data['method'] = 'post';
-        $data['tombol'] = 'Simpan';
         $data['judul'] = 'Tambah Data';
-        $data['list_jk'] = [
-            'Pria' => 'Pria',
-            'Wanita' => 'Wanita',
-        ];
         return view('pasien_create', $data);
     }
 

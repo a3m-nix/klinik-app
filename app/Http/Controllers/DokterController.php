@@ -124,7 +124,7 @@ class DokterController extends Controller
         $dokter->save();
 
         flash('Data berhasil diubah');
-        return redirect()->route('dokter.index');
+        return redirect('/dokter');
     }
 
     /**
