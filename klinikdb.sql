@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2023 at 09:46 AM
+-- Generation Time: Dec 04, 2023 at 01:33 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.29
 
@@ -36,8 +36,19 @@ CREATE TABLE `administrasis` (
   `poli` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `biaya` int(11) NOT NULL,
   `keluhan` text COLLATE utf8mb4_unicode_ci,
-  `diagnosis` text COLLATE utf8mb4_unicode_ci
+  `diagnosis` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT 'baru'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `administrasis`
+--
+
+INSERT INTO `administrasis` (`id`, `kode_administrasi`, `tanggal`, `pasien_id`, `dokter_id`, `poli`, `biaya`, `keluhan`, `diagnosis`, `status`) VALUES
+(2, 'ADM0001', '2023-11-29', 3, 3, 'Mata', 15000, 'tes', 'tbc', 'selesai'),
+(3, 'ADM0003', '2018-03-28', 8, 3, 'Mata', 15000, 'batuk', 'tbc', 'selesai'),
+(4, 'ADM0004', '2018-03-28', 9, 3, 'Mata', 15000, 'batuk', NULL, 'baru'),
+(5, 'ADM0005', '1990-01-12', 11, 3, 'Gigi', 200000, 'Facere quia recusand', NULL, 'baru');
 
 -- --------------------------------------------------------
 
@@ -49,6 +60,7 @@ CREATE TABLE `dokters` (
   `id` int(11) NOT NULL,
   `kode_dokter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_dokter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `spesialis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nomor_hp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
@@ -59,12 +71,12 @@ CREATE TABLE `dokters` (
 -- Dumping data for table `dokters`
 --
 
-INSERT INTO `dokters` (`id`, `kode_dokter`, `nama_dokter`, `spesialis`, `nomor_hp`, `created_at`, `updated_at`) VALUES
-(2, '1001', 'Bude', 'mata', '081365646865', '2023-06-21 07:33:44', '2023-06-21 07:33:44'),
-(3, '1001', 'Budu', 'mata', '081365646865', '2023-06-21 07:33:44', '2023-06-21 07:33:44'),
-(4, '1001', 'Ali', 'mata', '081365646865', '2023-06-21 07:33:44', '2023-06-21 07:33:44'),
-(5, 'Expedita reiciendis', 'Aliqua Voluptatum e', 'Kandungan', 'Consectetur qui ist', '2023-11-08 00:37:15', '2023-11-08 00:37:15'),
-(6, '100001', 'bbbbb', 'Kandungan', '181366176510', '2023-11-08 00:41:06', '2023-11-08 00:41:06');
+INSERT INTO `dokters` (`id`, `kode_dokter`, `nama_dokter`, `foto`, `spesialis`, `nomor_hp`, `created_at`, `updated_at`) VALUES
+(2, 'D001', 'Dr. Wawan', NULL, 'jantung', '081365646865', '2023-06-21 07:33:44', '2023-11-30 03:17:16'),
+(3, 'D002', 'Dr. Budu, Sp.oK', NULL, 'umum', '081365646865', '2023-06-21 07:33:44', '2023-11-29 01:48:11'),
+(4, 'D003', 'Ali, Sp.Ka', NULL, 'paru', '081365646865', '2023-06-21 07:33:44', '2023-11-29 01:48:43'),
+(5, 'D004', 'Dr. Denu, Sp.oK', 'public/foto_dokter/82KHViZrQ1Mz5Bw1eizoFLAHBbciCwqFoNZ2iCek.jpg', 'jantung', '081356', '2023-11-08 00:37:15', '2023-11-29 07:31:13'),
+(8, 'D0006', 'Dr. Wewena', 'public/foto_dokter/wf6FMKtQqjGPieiKzkBY6VLYk6MWU9FFT2ZRPtQs.jpg', 'jantung', '08136615650', '2023-11-29 06:09:34', '2023-11-29 06:17:51');
 
 -- --------------------------------------------------------
 
@@ -117,6 +129,7 @@ CREATE TABLE `pasiens` (
   `kode_pasien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_pasien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jenis_kelamin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomor_hp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
@@ -127,11 +140,12 @@ CREATE TABLE `pasiens` (
 -- Dumping data for table `pasiens`
 --
 
-INSERT INTO `pasiens` (`id`, `kode_pasien`, `nama_pasien`, `jenis_kelamin`, `status`, `alamat`, `created_at`, `updated_at`) VALUES
-(3, 'P113', 'maman', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
-(4, 'P114', 'wisa', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
-(5, 'P115', 'wisata', 'laki-laki', '1', 'jalan', '2023-06-22 02:22:53', '2023-06-22 02:22:53'),
-(6, 'PS1001', 'budibudibudi', 'Pria', 'Sudah Menikah', 'tjhjalan', '2023-06-22 04:31:25', '2023-06-22 04:31:25');
+INSERT INTO `pasiens` (`id`, `kode_pasien`, `nama_pasien`, `jenis_kelamin`, `nomor_hp`, `status`, `alamat`, `created_at`, `updated_at`) VALUES
+(6, 'PS1001', 'bebedu', 'Laki-laki', '0813665622', 'Sudah Menikah', 'tjhjalan', '2023-06-22 04:31:25', '2023-11-29 07:28:44'),
+(8, 'P0007', 'wenti', 'Laki-laki', '08161656563', 'Sudah Menikah', 'Non exercitationem o', '2023-11-29 06:49:12', '2023-11-29 07:28:26'),
+(9, 'P0009', 'wanto', 'Laki-laki', '08161656563', 'Sudah Menikah', 'Non exercitationem o', '2023-11-29 06:49:43', '2023-11-29 07:28:20'),
+(10, 'P0010', 'andre', 'Laki-laki', '08136565569', 'Sudah Menikah', 'tes', '2023-11-29 07:12:38', '2023-11-29 07:12:38'),
+(11, 'P0011', 'Et vero magna assume', 'Perempuan', '081368026565', 'Belum Menikah', 'Doloremque ducimus', '2023-11-29 07:57:24', '2023-11-29 07:57:24');
 
 -- --------------------------------------------------------
 
@@ -187,6 +201,7 @@ CREATE TABLE `polis` (
   `dokter_id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `biaya` double NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -195,8 +210,9 @@ CREATE TABLE `polis` (
 -- Dumping data for table `polis`
 --
 
-INSERT INTO `polis` (`id`, `dokter_id`, `nama`, `biaya`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Mata', 15000, '2023-11-28 02:21:43', '2023-11-28 02:21:43');
+INSERT INTO `polis` (`id`, `dokter_id`, `nama`, `biaya`, `deskripsi`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Mata', 15000, 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit                         sint consectetur velit. Quisquam quos quisquam cupiditate. ', '2023-11-28 02:21:43', '2023-11-28 02:21:43'),
+(2, 3, 'Gigi', 200000, 'Poli Gigi merupakan salah satu dari jenis layanan di puskesmas yang memberikan pelayanan kesehatan gigi dan mulut berupa pemeriksaan kesehatan gigi dan mulut, pengobatan dan pemberian tindakan medis dasar kesehatan gigi dan mulut seperti penambalan gigi, pencabutan gigi dan pembersihan karang gigi', '2023-11-29 00:34:12', '2023-11-29 00:34:12');
 
 -- --------------------------------------------------------
 
@@ -299,13 +315,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `administrasis`
 --
 ALTER TABLE `administrasis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dokters`
 --
 ALTER TABLE `dokters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -323,7 +339,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pasiens`
 --
 ALTER TABLE `pasiens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -335,7 +351,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `polis`
 --
 ALTER TABLE `polis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

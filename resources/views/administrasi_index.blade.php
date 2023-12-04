@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <a href="{{ route('administrasi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>

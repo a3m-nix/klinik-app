@@ -10,10 +10,10 @@
                         <form action="/dokter" method="POST" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
-                            <div class="form-group mt-3">
+                            <div class="form-group mt-1">
                                 <label for="nama_dokter">Nama Dokter</label>
                                 <input class="form-control" type="text" name="nama_dokter"
-                                    value="{{ old('nama_dokter') }}">
+                                    value="{{ old('nama_dokter') }}" autofocus>
                                 <span class="text-danger">{{ $errors->first('nama_dokter') }}</span>
                             </div>
                             <div class="form-group mt-3">
@@ -24,9 +24,10 @@
                             <div class="form-group mt-3">
                                 <label for="spesialis">Spesialis</label>
                                 <select name="spesialis" class="form-control">
-                                    @foreach ($list_sp as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
+                                    <option value="mata" @selected(old('spesialis') == 'mata')> Spesialis Mata</option>
+                                    <option value="tht" @selected(old('spesialis') == 'tht')> Spesialis THT</option>
+                                    <option value="jantung" @selected(old('spesialis') == 'jantung')> Spesialis Jantung</option>
+                                    <option value="paru" @selected(old('spesialis') == 'paru')> Spesialis Paru</option>
                                 </select>
                                 <span class="text-danger">{{ $errors->first('spesialis') }}</span>
                             </div>

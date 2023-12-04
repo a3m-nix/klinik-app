@@ -11,7 +11,7 @@ class DokterController extends Controller
      */
     public function index()
     {
-        $data['dokter'] = \App\Models\Dokter::all();
+        $data['dokter'] = \App\Models\Dokter::get();
         $data['judul'] = 'Data-data Dokter';
         return view('dokter_index', $data);
     }
@@ -21,14 +21,7 @@ class DokterController extends Controller
      */
     public function create()
     {
-        $data['list_sp'] = [
-            'Umum' => 'Umum',
-            'Gigi' => 'Gigi',
-            'Kandungan' => 'Kandungan',
-            'Anak' => 'Anak',
-            'Bedah' => 'Bedah',
-        ];
-        return view('dokter_create', $data);
+        return view('dokter_create');
     }
 
     /**
@@ -50,11 +43,11 @@ class DokterController extends Controller
         $dokter = new \App\Models\Dokter();
 
         if ($request->hasFile('foto')) {
+            //buang foto dari validasi data
             unset($validasiData['foto']);
             $path = $request->file('foto')->store('public/foto_dokter');
             $dokter->foto = $path;
         }
-
         $dokter->kode_dokter = $kode;
         $dokter->fill($validasiData);
         $dokter->save();

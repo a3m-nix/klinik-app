@@ -32,4 +32,6 @@ Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
     Route::resource('administrasi', AdministrasiController::class);
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
