@@ -1,13 +1,14 @@
 # Aplikasi Klinik
 
-Aplikasi Klinik untuk materi Web 2 Kampus UNAMA | Universitas Dinamika Bangsa.
-Aplikasi ini memiliki 3 Role :
+Aplikasi Klinik ini dikembangkan untuk keperluan Materi Perkuliahan Web || di Kampus UNAMA | Universitas Dinamika Bangsa. Aplikasi ini memiliki 3 role:
 
-1. admin
-2. operator
-3. dokter
-   Operator dapat melakukan input administrasi
-   Dokter dapat menginput data hasil diagnosa pasien
+1. **admin**
+    - Bisa mengakses semua fitur
+2. **operator**
+    - Hanya Fitur administrasi
+3. **dokter**
+    - Operator dapat melakukan input administrasi.
+    - Dokter dapat menginput data hasil diagnosa pasien.
 
 ## Cara Penggunaan
 
