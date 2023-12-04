@@ -151,10 +151,10 @@
                     aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Laporan:</h6>
-                        <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan
+                        {{-- <a class="collapse-item" href="{{ route('pasien.laporan') }}" target="_blank">Laporan
                             Pasien</a>
                         <a class="collapse-item" href="{{ route('dokter.laporan') }}" target="_blank">Laporan
-                            Dokter</a>
+                            Dokter</a> --}}
                         <a class="collapse-item" href="/laporan/administrasi">Laporan Administrasi</a>
                     </div>
                 </div>
