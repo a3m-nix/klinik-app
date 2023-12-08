@@ -112,7 +112,19 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             @if (auth()->user()->role == 'admin' || auth()->user() == 'operator')
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('administrasi.index') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/administrasi">
+                        <i class="fas fa-fw fa-cogs"></i>
+                        <span>Data Administrasi</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::is('administrasi.create') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/administrasi/create">
+                        <i class="fas fa-fw fa-plus"></i>
+                        <span>Tambah Administrasi</span>
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fas fa-fw fa-wrench"></i>
@@ -128,7 +140,7 @@
                                 href="/administrasi">Data Adm</a>
                         </div>
                     </div>
-                </li>
+                </li> --}}
             @endif
 
 
@@ -231,50 +243,45 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">
+                                    {{ \App\Models\Administrasi::where('status', 'baru')->count() }}
+                                </span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    Pendaftaran Baru
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
+                                @forelse (\App\Models\Administrasi::where('status', 'baru')->get() as $item)
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to
-                                            download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
+                                        <div>
+                                            <div class="small text-gray-500">{{ $item->tanggal->format('d F Y') }}
+                                            </div>
+                                            <span class="font-weight-bold">{{ $item->pasien->nama_pasien }} berobat ke
+                                                poli {{ $item->poli }}</span>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </a>
+                                @empty
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
+                                        <div>
+                                            <span class="font-weight-bold">Data tidak ada</span>
+                                        </div>
+                                    </a>
+                                @endforelse
+
+                                <a class="dropdown-item text-center small text-gray-500"
+                                    href="/administrasi">Tampillkan Semua</a>
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
