@@ -16,7 +16,7 @@ class AdministrasiController extends Controller
             $data['administrasi'] = \App\Models\Administrasi::where('dokter_id', auth()->user()->dokter->id)
                 ->paginate(50);
         } else {
-            $data['administrasi'] = \App\Models\Administrasi::latest()->paginate(50);
+            $data['administrasi'] = \App\Models\Administrasi::orderBy('tanggal', 'desc')->paginate(50);
         }
 
         $data['judul'] = 'Data Administrasi';
@@ -29,7 +29,7 @@ class AdministrasiController extends Controller
     public function create()
     {
 
-        $data['list_pasien'] = \App\Models\Pasien::selectRaw("id, concat(kode_pasien, ' - ', nama_pasien) as tampil")->pluck('tampil', 'id');
+        $data['list_pasien'] = \App\Models\Pasien::get();
         $data['list_poli'] = \App\Models\Poli::get();
         return view('administrasi_create', $data);
     }

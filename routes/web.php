@@ -8,6 +8,8 @@ use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegistrasiPasienController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,16 +27,16 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [RegistrasiPasienController::class, 'create']);
 Route::resource('registrasipasien', RegistrasiPasienController::class);
 
-Route::middleware(\App\Http\Middleware\Authenticate::class)->group(function () {
+Route::middleware(Authenticate::class)->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('dokter/laporan', [DokterController::class, 'laporan'])->name('dokter.laporan');
     Route::get('pasien/laporan', [PasienController::class, 'laporan'])->name('pasien.laporan');
-    Route::resource('user', UserController::class)->middleware(\App\Http\Middleware\Admin::class);;
+    Route::resource('user', UserController::class)->middleware(Admin::class);
     Route::resource('profil', ProfilController::class);
     //buat middleware dengan perintah php artisan make:middleware Admin lalu modif kodenya \App\Http\Middleware\Admin.php
-    Route::resource('poli', PoliController::class)->middleware(\App\Http\Middleware\Admin::class);;
-    Route::resource('dokter', DokterController::class)->middleware(\App\Http\Middleware\Admin::class);;
-    Route::resource('pasien', PasienController::class)->middleware(\App\Http\Middleware\Admin::class);
+    Route::resource('poli', PoliController::class)->middleware(Admin::class);
+    Route::resource('dokter', DokterController::class)->middleware(Admin::class);
+    Route::resource('pasien', PasienController::class)->middleware(Admin::class);
     Route::resource('administrasi', AdministrasiController::class);
     Route::get('laporan/administrasi', [LaporanAdmController::class, 'index'])->name('laporan.adm');
 });

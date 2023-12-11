@@ -31,4 +31,14 @@ class Dokter extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get all of the poli for the Dokter
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function poli(): HasMany
+    {
+        return $this->hasMany(Poli::class);
+    }
 }

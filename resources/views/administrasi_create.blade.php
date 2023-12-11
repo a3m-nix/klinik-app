@@ -18,9 +18,9 @@
                         <label for="pasien_id">Pilih Pasien atau <a href="/pasien/create" target="blank">Buat
                                 Baru</a></label>
                         <select name="pasien_id" id="pasien_id" class="form-control">
-                            @foreach ($list_pasien as $id => $nama)
-                                <option value="{{ $id }}" @selected(old('pasien_id') == $id)>
-                                    {{ $nama }}
+                            @foreach ($list_pasien as $item)
+                                <option value="{{ $item->id }}" @selected(old('pasien_id') == $item->id)>
+                                    {{ $item->kode_pasien }} - {{ $item->nama_pasien }} - {{ $item->jenis_kelamin }}
                                 </option>
                             @endforeach
                         </select>
