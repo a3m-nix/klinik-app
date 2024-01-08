@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\LaporanAdmController;
+use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfilController;
@@ -37,6 +38,7 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::resource('poli', PoliController::class)->middleware(Admin::class);
     Route::resource('dokter', DokterController::class)->middleware(Admin::class);
     Route::resource('pasien', PasienController::class)->middleware(Admin::class);
+    Route::resource('obat', ObatController::class)->middleware(Admin::class);
     Route::resource('administrasi', AdministrasiController::class);
     Route::get('laporan/administrasi', [LaporanAdmController::class, 'index'])->name('laporan.adm');
 });
