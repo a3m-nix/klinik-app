@@ -19,6 +19,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin2') }}/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ asset('sbadmin2') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
 
 </head>
 
@@ -83,8 +84,8 @@
                         <span>Data Klinik</span>
                     </a>
                     <div id="collapseTwo"
-                        class="collapse 
-                {{ Route::is('dokter.*') ? 'show' : '' }} 
+                        class="collapse
+                {{ Route::is('dokter.*') ? 'show' : '' }}
                 {{ Route::is('pasien.*') ? 'show' : '' }}
                 {{ Route::is('poli.*') ? 'show' : '' }}"
                         aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -104,6 +105,10 @@
                                 href="/poli/create">Tambah Poli</a>
                             <a class="collapse-item {{ Route::is('poli.index') ? 'active' : '' }}" href="/poli">
                                 Data Poli</a>
+                            <h6 class="collapse-header">Data Obat:</h6>
+                            <a class="collapse-item" href="/obat/create">Tambah Obat</a>
+                            <a class="collapse-item" href="/obat">
+                                Data Obat</a>
                         </div>
                     </div>
                 </li>

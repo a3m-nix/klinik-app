@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('spesialis');
             $table->string('nomor_hp');
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('tiktok')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         });

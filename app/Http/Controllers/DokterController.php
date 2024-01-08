@@ -35,7 +35,12 @@ class DokterController extends Controller
             'spesialis' => 'required',
             'password' => 'required',
             'nomor_hp' => 'required|numeric|unique:dokters,nomor_hp',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048'
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048',
+            'twitter' => 'required',
+            'facebook' => 'required',
+            'instagram' => 'required',
+            'tiktok' => 'required'
+
         ]);
         $kodeQuery = \App\Models\Dokter::orderBy('id', 'desc')->first();
         $kode = 'D0001';
@@ -66,6 +71,10 @@ class DokterController extends Controller
             $dokter->nama_dokter = $request->nama_dokter;
             $dokter->spesialis = $request->spesialis;
             $dokter->nomor_hp = $request->nomor_hp;
+            $dokter->twitter = $request->twitter;
+            $dokter->facebook = $request->facebook;
+            $dokter->instagram = $request->instagram;
+            $dokter->tiktok = $request->tiktok;
             $dokter->save();
             DB::commit();
             flash('Data berhasil disimpan');
@@ -111,6 +120,10 @@ class DokterController extends Controller
             'nama_dokter' => 'required',
             'spesialis' => 'required',
             'nomor_hp' => 'required',
+            'twitter' => 'required',
+            'facebook' => 'required',
+            'instagram' => 'required',
+            'tiktok' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:8048'
         ]);
 
