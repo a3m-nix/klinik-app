@@ -33,6 +33,30 @@
                     <span class="text-danger">{{ $errors->first('nomor_hp') }}</span>
                 </div>
                 <div class="form-group mt-3">
+                    <label for="twitter">Twitter</label>
+                    <input class="form-control" type="text" name="twitter"
+                        value="{{ old('twitter') !== null ? old('twitter') : '#' }}">
+                    <span class="text-danger">{{ $errors->first('twitter') }}</span>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="facebook">Facebook</label>
+                    <input class="form-control" type="text" name="facebook"
+                        value="{{ old('facebook') !== null ? old('facebook') : '#' }}">
+                    <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="instagram">Instagram</label>
+                    <input class="form-control" type="text" name="instagram"
+                        value="{{ old('instagram') !== null ? old('instagram') : '#' }}">
+                    <span class="text-danger">{{ $errors->first('instagram') }}</span>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="tiktok">Tiktok</label>
+                    <input class="form-control" type="text" name="tiktok"
+                        value="{{ old('tiktok') !== null ? old('tiktok') : '#' }}">
+                    <span class="text-danger">{{ $errors->first('tiktok') }}</span>
+                </div>
+                <div class="form-group mt-3">
                     <label for="password">Password</label>
                     <input class="form-control" type="text" name="password" value="{{ old('password') }}">
                     <span class="text-danger">{{ $errors->first('password') }}</span>
