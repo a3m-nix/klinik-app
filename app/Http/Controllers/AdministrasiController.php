@@ -78,8 +78,8 @@ class AdministrasiController extends Controller
     public function edit(string $id)
     {
         $data['administrasi'] = \App\Models\Administrasi::findOrfail($id);
-        $data['list_pasien'] = \App\Models\Pasien::selectRaw("id, concat(kode_pasien, ' - ', nama_pasien) as tampil")->pluck('tampil', 'id');
-        $data['list_dokter'] = \App\Models\Dokter::selectRaw("id, concat(kode_dokter, ' - ', nama_dokter) as tampil")->pluck('tampil', 'id');
+        $data['list_pasien'] = \App\Models\Pasien::pluck('nama_pasien', 'id');
+        $data['list_dokter'] = \App\Models\Dokter::pluck('nama_dokter', 'id');
         return view('administrasi_edit', $data);
     }
 
